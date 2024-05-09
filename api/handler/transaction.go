@@ -23,6 +23,10 @@ type NewTransactionReq struct {
 }
 
 func (r *NewTransactionReq) validate() error {
+	if len(r.PaymentBills) <= 0 {
+		return errors.New("payment_bills array cannot be empty")
+	}
+
 	for _, bill := range r.PaymentBills {
 		if !(bill == 2000 || bill == 5000) {
 			return errors.New("invalid denomination")

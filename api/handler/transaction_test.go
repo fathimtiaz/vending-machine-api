@@ -14,6 +14,14 @@ func TestNewTransactionReq_validate(t *testing.T) {
 		{
 			r: &NewTransactionReq{
 				application.NewTransactionSpec{
+					PaymentBills: []int{},
+				},
+			},
+			wantErr: true,
+		},
+		{
+			r: &NewTransactionReq{
+				application.NewTransactionSpec{
 					PaymentBills: []int{1000},
 				},
 			},
