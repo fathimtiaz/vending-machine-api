@@ -14,7 +14,7 @@ type TransactionItem struct {
 	Price       int    `json:"price"`
 }
 
-func NewTransaction(ctx context.Context, billsSum int, products []Product) (result Transaction) {
+func MakeTransaction(ctx context.Context, billsSum int, products []Product) (result Transaction) {
 	for _, product := range products {
 		qty := billsSum / product.Price
 

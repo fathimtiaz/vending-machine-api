@@ -36,7 +36,7 @@ func (s *TransactionService) NewTransaction(ctx context.Context, spec NewTransac
 		return
 	}
 
-	result = domain.NewTransaction(ctx, spec.sum(), products)
+	result = domain.MakeTransaction(ctx, spec.sum(), products)
 
 	return
 }
