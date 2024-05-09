@@ -7,6 +7,9 @@ type SQLRepository struct {
 }
 
 func NewSQLRepository(driver, connStr string) (repo *SQLRepository, err error) {
-	repo.db, err = sql.Open(driver, connStr)
-	return
+	sqlDB, err := sql.Open(driver, connStr)
+
+	return &SQLRepository{
+		db: sqlDB,
+	}, err
 }
