@@ -4,6 +4,8 @@ import (
 	"net/http"
 	"vending-machine-api/application"
 	"vending-machine-api/helper"
+
+	httpSwagger "github.com/swaggo/http-swagger"
 )
 
 func InitRoutes(
@@ -12,4 +14,6 @@ func InitRoutes(
 ) {
 	transactionHndlr := NewTransactionHandler(transactionService, logger)
 	http.HandleFunc("/transaction", transactionHndlr.NewTransaction)
+
+	http.HandleFunc("/swagger/", httpSwagger.WrapHandler)
 }

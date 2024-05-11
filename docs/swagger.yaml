@@ -1,0 +1,27 @@
+info:
+  contact: {}
+paths:
+  /transaction:
+    post:
+      consumes:
+      - application/json
+      description: takes array of bills in payment_bills body field and calculate
+        transaction items
+      parameters:
+      - description: int array
+        in: body
+        name: payment_bills
+        required: true
+        schema:
+          items:
+            type: integer
+          type: array
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: ok
+          schema:
+            type: string
+      summary: Create a New Transaction
+swagger: "2.0"

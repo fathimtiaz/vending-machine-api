@@ -6,6 +6,8 @@ import (
 	"net/http"
 	"os"
 
+	_ "vending-machine-api/docs"
+
 	_ "github.com/lib/pq"
 
 	"vending-machine-api/api/handler"

@@ -44,6 +44,15 @@ type NewTransactionRes struct {
 	Data   domain.Transaction `json:"data"`
 }
 
+// NewTransaction
+//
+//	@Summary		Create a New Transaction
+//	@Description	takes array of bills in payment_bills body field and calculate transaction items
+//	@Accept			json
+//	@Produce		json
+//	@Param			payment_bills	body		[]int			true	"int array"
+//	@Success		200		{string}	string			"ok"
+//	@Router			/transaction [post]
 func (h *transactionHandler) NewTransaction(w http.ResponseWriter, r *http.Request) {
 	var req NewTransactionReq
 	var err error
