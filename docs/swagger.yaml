@@ -8,7 +8,7 @@ paths:
       description: takes array of bills in payment_bills body field and calculate
         transaction items
       parameters:
-      - description: int array
+      - description: 'int array: allowed 2000 & 5000'
         in: body
         name: payment_bills
         required: true
@@ -21,6 +21,14 @@ paths:
       responses:
         "200":
           description: ok
+          schema:
+            type: string
+        "400":
+          description: invalid parameters
+          schema:
+            type: string
+        "500":
+          description: internal error
           schema:
             type: string
       summary: Create a New Transaction

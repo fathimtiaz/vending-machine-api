@@ -13,7 +13,7 @@ func InitRoutes(
 	logger *helper.Logger,
 ) {
 	transactionHndlr := NewTransactionHandler(transactionService, logger)
-	http.HandleFunc("/transaction", transactionHndlr.NewTransaction)
+	http.HandleFunc("/transaction", transactionHndlr.Transaction)
 
 	http.HandleFunc("/swagger/", httpSwagger.WrapHandler)
 }

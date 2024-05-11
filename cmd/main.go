@@ -32,7 +32,7 @@ func main() {
 		Error: log.New(os.Stderr, "ERROR: ", log.Ldate|log.Ltime|log.Lshortfile),
 	}
 
-	connStr := "postgres://postgres:postgres@localhost:6432/database?sslmode=disable"
+	connStr := os.Getenv("DATABASE_URL")
 
 	if sqlRepo, err = sql.NewSQLRepository("postgres", connStr); err != nil {
 		logger.Error.Fatal("error initializing repository: ", err)
@@ -43,6 +43,6 @@ func main() {
 
 	handler.InitRoutes(transactionService, logger)
 
-	fmt.Println("server started at localhost:8000")
+	fmt.Println("server starteds at localhost:8000")
 	http.ListenAndServe(":8000", nil)
 }

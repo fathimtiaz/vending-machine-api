@@ -1,7 +1,7 @@
 # Dockerfile definition for Backend application service.
 
 # From which image we want to build. This is basically our environment.
-FROM golang:1.20.14-alpine3.19 as Build
+FROM golang:1.21.5-alpine3.19 as Build
 
 # This will copy all the files in our repo to the inside the container at root location.
 COPY . .
@@ -15,10 +15,9 @@ FROM alpine:latest
 
 # We need to copy the binary from the build image to the production image.
 COPY --from=Build /main .
-COPY keys/ keys/
 
 # This is the port that our application will be listening on.
-EXPOSE 1323
+EXPOSE 8080
 
 # This is the command that will be executed when the container is started.
 ENTRYPOINT ["./main"]
