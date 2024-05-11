@@ -1,3 +1,10 @@
+definitions:
+  handler.Response:
+    properties:
+      data: {}
+      message:
+        type: string
+    type: object
 info:
   contact: {}
 paths:
@@ -20,16 +27,16 @@ paths:
       - application/json
       responses:
         "200":
-          description: ok
+          description: OK
           schema:
-            type: string
+            $ref: '#/definitions/handler.Response'
         "400":
           description: invalid parameters
           schema:
-            type: string
+            $ref: '#/definitions/handler.Response'
         "500":
           description: internal error
           schema:
-            type: string
+            $ref: '#/definitions/handler.Response'
       summary: Create a New Transaction
 swagger: "2.0"

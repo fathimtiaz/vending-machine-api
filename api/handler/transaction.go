@@ -63,9 +63,9 @@ func (h *transactionHandler) Transaction(w http.ResponseWriter, r *http.Request)
 //	@Accept			json
 //	@Produce		json
 //	@Param			payment_bills	body		[]int			true	"int array: allowed 2000 & 5000"
-//	@Success		200		{object}	string			"ok"
-//	@Failure		400		{object}	string			"invalid parameters"
-//	@Failure		500		{object}	string			"internal error"
+//	@Success		200		{object}	Response(message:"success")			"ok"
+//	@Failure		400		{object}	Response			"invalid parameters"
+//	@Failure		500		{object}	Response			"internal error"
 //	@Router			/transaction [post]
 func (h *transactionHandler) NewTransaction(rw *ResponseWriter, r *http.Request) {
 	var req NewTransactionReq
