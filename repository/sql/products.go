@@ -6,7 +6,7 @@ import (
 )
 
 func (repo *SQLRepository) GetProducts(ctx context.Context) (result []domain.Product, err error) {
-	rows, err := repo.db.QueryContext(ctx, `SELECT id, name, price FROM product`)
+	rows, err := repo.db.QueryContext(ctx, `SELECT id, name, price FROM product ORDER by price desc`)
 	if err != nil {
 		return
 	}

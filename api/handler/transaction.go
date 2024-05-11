@@ -6,16 +6,19 @@ import (
 	"net/http"
 	"vending-machine-api/application"
 	"vending-machine-api/domain"
+	"vending-machine-api/helper"
 )
 
 type transactionHandler struct {
 	transactionService *application.TransactionService
+	logger             *helper.Logger
 }
 
 func NewTransactionHandler(
 	transactionService *application.TransactionService,
+	logger *helper.Logger,
 ) *transactionHandler {
-	return &transactionHandler{transactionService}
+	return &transactionHandler{transactionService, logger}
 }
 
 type NewTransactionReq struct {
@@ -47,14 +50,17 @@ func (h *transactionHandler) NewTransaction(w http.ResponseWriter, r *http.Reque
 	var transaction domain.Transaction
 
 	if err = json.NewDecoder(r.Body).Decode(&req); err != nil {
+		h.logger.Error.Printf("error decoding request body: %+v", err)
 		return
 	}
 
 	if transaction, err = h.transactionService.NewTransaction(r.Context(), req.NewTransactionSpec); err != nil {
+		h.logger.Error.Printf("error creating new transaction: %+v", err)
 		return
 	}
 
 	if err = json.NewEncoder(w).Encode(transaction); err != nil {
+		h.logger.Error.Printf("error encoding response: %+v", err)
 		return
 	}
 }
